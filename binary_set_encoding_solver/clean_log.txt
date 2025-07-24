@@ -85,8 +85,7 @@ empty for all T."
 [/CONTENT]
 Warning: model not found. Using cl100k_base encoding.
 e https://cookbook.openai.com/examples/how_to_count_tokens_with_tiktoken for information on how messages are converted to tokens.
-uments\llm_task_allocation\codelo\workspace\binary_set_encoding_solver error: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: '
-delo\\workspace\\20250612100239'
+uments\llm_task_allocation\codelo\workspace\binary_set_encoding_solver error delo\\workspace\\20250612100239'
 rs\39413\Documents\llm_task_allocation\codelo\workspace\binary_set_encoding_solver
 50612100253.json
 
