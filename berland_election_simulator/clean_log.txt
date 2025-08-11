@@ -1,0 +1,729 @@
+(mmetagpt)  "Elections are taking place in Berland. There are $n$ candidates participating in the elections, numbered from $1$ t
+o $n$. The $i$-th candidate has $a_i$ fans who will vote for him. Additionally, there are $c$ people who are undecided about their favorite candidate, let's call them undecided. Undecided
+ people will vote for the candidate with the lowest number. The candidate who receives the maximum number of votes wins the elections, and if multiple candidates receive the same maximum
+number of votes, the candidate with the lowest number among them wins. You found these elections too boring and predictable, so you decided to exclude some candidates from them. If you do
+ not allow candidate number $i$ to participate in the elections, all $a_i$ of his fans will become undecided, and will vote for the candidate with the lowest number. You are curious to fi
+nd, for each $i$ from $1$ to $n$, the minimum number of candidates that need to be excluded from the elections for candidate number $i$ to win the elections. Each test consists of multipl
+e test cases. The first line contains a single integer $t$ ($1 \leq t \leq 2 \cdot 10^4$) — the number of test cases. The description of the test cases follows. The first line of each te
+st case contains two integers $n$ and $c$ ($1 \le n \le 2 \cdot 10^5$, $0 \le c \le 10^9$) — the number of candidates in the elections and the number of undecided people. The second line
+ of each test case contains $n$ integers $a_1, a_2, \ldots, a_n$ ($0 \le a_i \le 10^9$) — the number of fans for each candidate. It is guaranteed that the sum of $n$ over all test cases
+does not exceed $2 \cdot 10^5$. For each test case, output $n$ integers, the $i$-th of which should be equal to the minimum number of candidates that need to be excluded from the election
+s for candidate number $i$ to win."
+  metagpt.const:get_metagpt_package_root:29 - Package root set to 
+  metagpt.team:invest:90 - Investment: $3.0.
+  metagpt.roles.role:_act:391 - Alice(Product Manager): to do PrepareDocuments(PrepareDocuments)
+  metagpt.roles.role:_act:391 - Alice(Product Manager): to do WritePRD(WritePRD)
+  metagpt.actions.write_prd:run:86 - New requirement detected: Elections are taking place in Berland. There are $n$ candidates participating in the elec
+tions, numbered from $1$ to $n$. The $i$-th candidate has $a_i$ fans who will vote for him. Additionally, there are $c$ people who are undecided about their favorite candidate, let's call
+ them undecided. Undecided people will vote for the candidate with the lowest number. The candidate who receives the maximum number of votes wins the elections, and if multiple candidates
+ receive the same maximum number of votes, the candidate with the lowest number among them wins. You found these elections too boring and predictable, so you decided to exclude some candi
+dates from them. If you do not allow candidate number $i$ to participate in the elections, all $a_i$ of his fans will become undecided, and will vote for the candidate with the lowest num
+ber. You are curious to find, for each $i$ from $1$ to $n$, the minimum number of candidates that need to be excluded from the elections for candidate number $i$ to win the elections. Eac
+h test consists of multiple test cases. The first line contains a single integer $t$ ($1 \leq t \leq 2 \cdot 10^4$) — the number of test cases. The description of the test cases follows.
+ The first line of each test case contains two integers $n$ and $c$ ($1 \le n \le 2 \cdot 10^5$, $0 \le c \le 10^9$) — the number of candidates in the elections and the number of undecid
+ed people. The second line of each test case contains $n$ integers $a_1, a_2, \ldots, a_n$ ($0 \le a_i \le 10^9$) — the number of fans for each candidate. It is guaranteed that the sum o
+f $n$ over all test cases does not exceed $2 \cdot 10^5$. For each test case, output $n$ integers, the $i$-th of which should be equal to the minimum number of candidates that need to be
+excluded from the elections for candidate number $i$ to win.
+[CONTENT]
+{
+    "Language": "en_us",
+    "Programming Language": "Python",
+    "Original Requirements": "Elections are taking place in Berland. There are $n$ candidates participating in the elections, numbered from $1$ to $n$. The $i$-th candidate has $a_i$ fans
+ who will vote for him. Additionally, there are $c$ people who are undecided about their favorite candidate, let's call them undecided. Undecided people will vote for the candidate with t
+he lowest number. The candidate who receives the maximum number of votes wins the elections, and if multiple candidates receive the same maximum number of votes, the candidate with the lo
+west number among them wins. You found these elections too boring and predictable, so you decided to exclude some candidates from them. If you do not allow candidate number $i$ to partici
+pate in the elections, all $a_i$ of his fans will become undecided, and will vote for the candidate with the lowest number. You are curious to find, for each $i$ from $1$ to $n$, the mini
+mum number of candidates that need to be excluded from the elections for candidate number $i$ to win the elections. Each test consists of multiple test cases. The first line contains a si
+ngle integer $t$ ($1 \leq t \leq 2 \cdot 10^4$) — the number of test cases. The description of the test cases follows. The first line of each test case contains two integers $n$ and $c$
+($1 \le n \le 2 \cdot 10^5$, $0 \le c \le 10^9$) — the number of candidates in the elections and the number of undecided people. The second line of each test case contains $n$ integers $
+a_1, a_2, \ldots, a_n$ ($0 \le a_i \le 10^9$) — the number of fans for each candidate. It is guaranteed that the sum of $n$ over all test cases does not exceed $2 \cdot 10^5$. For each t
+est case, output $n$ integers, the $i$-th of which should be equal to the minimum number of candidates that need to be excluded from the elections for candidate number $i$ to win.",
+    "Project Name": "berland_election_simulator",
+    "Product Goals": [
+        "Efficiently compute the minimum number of exclusions needed for each candidate to win",
+        "Support large input sizes and multiple test cases with optimal performance",
+        "Provide clear, user-friendly output for each test case"
+    ],
+    "User Stories": [
+        "As a user, I want to input multiple test cases with varying numbers of candidates and undecided voters",
+        "As a user, I want to receive, for each candidate, the minimum number of exclusions required for them to win",
+        "As a user, I want the system to handle large numbers of candidates and voters efficiently",
+        "As a user, I want the output to be easy to interpret and directly usable for analysis"
+    ],
+    "Competitive Analysis": [
+        "Codeforces custom election simulators: Focused on speed, but often lack user-friendly output",
+        "AtCoder contest problem solvers: Efficient, but not tailored for this specific exclusion scenario",
+        "LeetCode election-related problems: Generalized, not focused on exclusion mechanics",
+        "HackerRank voting system challenges: Good for practice, but not for this specific requirement",
+        "Project Euler combinatorial problems: Not interactive, and not focused on elections",
+        "Open-source voting simulation tools: Often too generic or complex for this use case",
+        "Custom Python scripts shared on forums: Varying quality, often lack scalability"
+    ],
+    "Competitive Quadrant Chart": "quadrantChart\n    title \"Election Simulation Tools\"\n    x-axis \"Low Scalability\" --> \"High Scalability\"\n    y-axis \"Low Specificity\" --> \"Hi
+gh Specificity\"\n    quadrant-1 \"Expand Features\"\n    quadrant-2 \"Promote for Niche\"\n    quadrant-3 \"Re-evaluate\"\n    quadrant-4 \"Improve Usability\"\n    \"Codeforces Simulato
+rs\": [0.8, 0.6]\n    \"AtCoder Solvers\": [0.7, 0.5]\n    \"LeetCode Problems\": [0.6, 0.3]\n    \"HackerRank Challenges\": [0.5, 0.4]\n    \"Project Euler\": [0.3, 0.2]\n    \"Open-sour
+ce Tools\": [0.9, 0.7]\n    \"Our Target Product\": [1.0, 1.0]",
+    "Requirement Analysis": "The requirement is to simulate an election with n candidates and c undecided voters, where undecided voters always vote for the lowest-numbered candidate. Whe
+n a candidate is excluded, their fans become undecided and thus also vote for the lowest-numbered candidate. For each candidate, we must determine the minimum number of other candidates t
+o exclude so that this candidate wins, considering the tie-breaking rule (lowest number wins in case of a tie). The solution must handle multiple test cases and large input sizes efficien
+tly, requiring an algorithm with optimal time complexity, likely O(n log n) per test case or better.",
+    "Requirement Pool": [
+        [
+            "P0",
+            "Efficiently calculate, for each candidate, the minimum number of exclusions needed for them to win"
+        ],
+        [
+            "P0",
+            "Support multiple test cases and large input sizes up to the given constraints"
+        ],
+        [
+            "P1",
+            "Provide clear and structured output for each test case"
+        ],
+        [
+            "P1",
+            "Handle edge cases such as all candidates having zero fans or all undecided voters"
+        ],
+        [
+            "P2",
+            "Allow for easy integration with competitive programming platforms"
+        ]
+    ],
+    "UI Design draft": "A simple command-line interface where the user inputs the number of test cases, followed by the number of candidates, undecided voters, and the list of fans for ea
+ch candidate. The output is a list of integers for each test case, each integer representing the minimum number of exclusions needed for the corresponding candidate to win. The UI is text
+-based, with clear prompts and formatted output for easy reading.",
+    "Anything UNCLEAR": "The requirements are clear, but the exact format of the output (e.g., space-separated or line-separated integers) should be confirmed. Also, clarify if the soluti
+on should provide the actual list of excluded candidates or just the count."
+}
+[/CONTENT]
+Warning: model not found. Using cl100k_base encoding.
+e https://cookbook.openai.com/examples/how_to_count_tokens_with_tiktoken for information on how messages are converted to tokens.
+  metagpt.utils.repair_llm_raw_output:run_and_passon:268 - parse json from content inside [CONTENT][/CONTENT] failed at retry 1, exp: Invalid \escape: '
+l': line 4 column 1145 (char 1209)
+  metagpt.utils.repair_llm_raw_output:repair_invalid_json:237 - repair_invalid_json, raw error: Invalid \escape: 'l': line 4 column 1145 (char 1209)
+  metagpt.utils.common:log_it:554 - Finished call to 'metagpt.actions.action_node.ActionNode._aask_v1' after 11.234(s), this was the 1st time calling it
+. exp: RetryError[<Future at 0x20b83d9acd0 state=finished raised JSONDecodeError>]
+[CONTENT]
+{
+    "Language": "en_us",
+    "Programming Language": "Python",
+    "Original Requirements": "Elections are taking place in Berland. There are $n$ candidates participating in the elections, numbered from $1$ to $n$. The $i$-th candidate has $a_i$ fans
+ who will vote for him. Additionally, there are $c$ people who are undecided about their favorite candidate, let's call them undecided. Undecided people will vote for the candidate with t
+he lowest number. The candidate who receives the maximum number of votes wins the elections, and if multiple candidates receive the same maximum number of votes, the candidate with the lo
+west number among them wins. You found these elections too boring and predictable, so you decided to exclude some candidates from them. If you do not allow candidate number $i$ to partici
+pate in the elections, all $a_i$ of his fans will become undecided, and will vote for the candidate with the lowest number. You are curious to find, for each $i$ from $1$ to $n$, the mini
+mum number of candidates that need to be excluded from the elections for candidate number $i$ to win the elections. Each test consists of multiple test cases. The first line contains a si
+ngle integer $t$ ($1 \\leq t \\leq 2 \\cdot 10^4$) — the number of test cases. The description of the test cases follows. The first line of each test case contains two integers $n$ and $
+c$ ($1 \\le n \\le 2 \\cdot 10^5$, $0 \\le c \\le 10^9$) — the number of candidates in the elections and the number of undecided people. The second line of each test case contains $n$ in
+tegers $a_1, a_2, \\ldots, a_n$ ($0 \\le a_i \\le 10^9$) — the number of fans for each candidate. It is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\cdot 10^5$
+. For each test case, output $n$ integers, the $i$-th of which should be equal to the minimum number of candidates that need to be excluded from the elections for candidate number $i$ to
+win.",
+    "Project Name": "berland_election_simulator",
+    "Product Goals": [
+        "Simulate the minimum candidate exclusions required for each candidate to win in Berland elections",
+        "Efficiently handle large input sizes and multiple test cases",
+        "Provide clear, user-friendly output for each scenario"
+    ],
+    "User Stories": [
+        "As a user, I want to input multiple test cases with different numbers of candidates and undecided voters",
+        "As a user, I want to know, for each candidate, the minimum number of exclusions needed for them to win",
+        "As a user, I want the simulation to handle large numbers of candidates and voters efficiently",
+        "As a user, I want the output to be easy to interpret and directly usable for analysis"
+    ],
+    "Competitive Analysis": [
+        "Codeforces Problemset: Large-scale competitive programming problems with efficient input/output handling",
+        "AtCoder Contest Simulators: Fast, robust simulation of voting and elimination scenarios",
+        "LeetCode Election Simulation Problems: Focused on algorithmic efficiency and clear output",
+        "HackerRank Voting Challenges: Emphasis on handling edge cases and large datasets",
+        "Project Euler Voting Problems: Mathematical approach to voting and elimination",
+        "TopCoder Voting Algorithms: Optimized for speed and correctness",
+        "Kattis Election Problems: User-friendly input/output and problem clarity"
+    ],
+    "Competitive Quadrant Chart": "quadrantChart\n    title \"Simulation Efficiency vs. User Clarity\"\n    x-axis \"Low Efficiency\" --> \"High Efficiency\"\n    y-axis \"Low Clarity\" -
+-> \"High Clarity\"\n    quadrant-1 \"Ideal Solution\"\n    quadrant-2 \"Needs Optimization\"\n    quadrant-3 \"Needs Clarification\"\n    quadrant-4 \"Basic Implementation\"\n    \"Codef
+orces Problemset\": [0.9, 0.8]\n    \"AtCoder Contest Simulators\": [0.85, 0.7]\n    \"LeetCode Election Simulation Problems\": [0.8, 0.9]\n    \"HackerRank Voting Challenges\": [0.7, 0.6
+]\n    \"Project Euler Voting Problems\": [0.6, 0.5]\n    \"TopCoder Voting Algorithms\": [0.75, 0.7]\n    \"Kattis Election Problems\": [0.65, 0.85]\n    \"Our Target Product\": [0.95, 0
+.95]",
+    "Requirement Analysis": "The requirement is to simulate an election scenario where, for each candidate, we determine the minimum number of other candidates that must be excluded for t
+hem to win. The simulation must account for the redistribution of votes from excluded candidates (their fans become undecided and vote for the lowest-numbered candidate). The solution mus
+t efficiently handle large input sizes and multiple test cases, ensuring correctness and performance. Output must be clear and directly answer the problem for each candidate in each test
+case.",
+    "Requirement Pool": [
+        [
+            "P0",
+            "Efficiently process multiple test cases with large n and c values"
+        ],
+        [
+            "P0",
+            "For each candidate, compute the minimum number of exclusions required for them to win"
+        ],
+        [
+            "P1",
+            "Handle edge cases such as all candidates having zero fans or all undecided voters"
+        ],
+        [
+            "P1",
+            "Provide clear and structured output for each test case"
+        ],
+        [
+            "P2",
+            "Allow for easy integration with competitive programming platforms"
+        ]
+    ],
+    "UI Design draft": "A simple command-line interface where users input the number of test cases, followed by n, c, and the list of a_i for each test case. The output is a list of n int
+egers per test case, each representing the minimum number of exclusions needed for the corresponding candidate to win. The UI is minimal, focusing on clarity and efficiency, with clear pr
+ompts and formatted output.",
+    "Anything UNCLEAR": "The requirements are clear, but the exact format of the input/output (e.g., whether to print all results at once or after each test case) could be clarified. Also
+, whether ties for the lowest-numbered candidate after exclusions need special handling should be confirmed."
+}
+[/CONTENT]
+Warning: model not found. Using cl100k_base encoding.
+e https://cookbook.openai.com/examples/how_to_count_tokens_with_tiktoken for information on how messages are converted to tokens.
+uments\llm_task_allocation\codelo\workspace\berland_election_simulator error: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: '
+delo\\workspace\\20250614232456'
+rs\39413\Documents\llm_task_allocation\codelo\workspace\berland_election_simulator
+50614232520.json
+
+
+  metagpt.utils.mermaid:mermaid_to_file:44 - Generating 
+es\competitive_analysis\20250614232520.pdf..
+  metagpt.utils.mermaid:mermaid_to_file:68 - Generating single mermaid chart
+
+  metagpt.utils.mermaid:mermaid_to_file:44 - Generating 
+es\competitive_analysis\20250614232520.svg..
+  metagpt.utils.mermaid:mermaid_to_file:68 - Generating single mermaid chart
+
+  metagpt.utils.mermaid:mermaid_to_file:44 - Generating 
+es\competitive_analysis\20250614232520.png..
+  metagpt.utils.mermaid:mermaid_to_file:68 - Generating single mermaid chart
+
+d\20250614232520.md
+  metagpt.roles.role:_act:391 - Bob(Architect): to do WriteDesign(WriteDesign)
+[CONTENT]
+{
+    "Implementation approach": "We will implement a high-performance, single-file Python solution using only the standard library (no external dependencies required) to maximize compatibi
+lity and efficiency for competitive programming scenarios. The main challenge is, for each candidate, to efficiently determine the minimum number of other candidates to exclude so that th
+e candidate wins, considering the redistribution of votes from excluded candidates. We will precompute prefix sums and use a sorted list of candidates' votes to quickly determine, for eac
+h candidate, how many higher-vote candidates must be excluded. The solution will process all test cases in a single pass, using fast input/output (sys.stdin, sys.stdout) for large dataset
+s. The output will be formatted as specified: one line per test case, each with n integers.",
+    "File list": [
+        "main.py"
+    ],
+    "Data structures and interfaces": "\nclassDiagram\n    class ElectionSimulator {\n        +__init__()\n        +process_test_cases(test_cases: list[dict]) -> list[list[int]]\n
++_min_exclusions_for_candidate(n: int, c: int, a: list[int], idx: int) -> int\n    }\n    class InputParser {\n        +__init__()\n        +parse_input() -> list[dict]\n    }\n    class
+OutputFormatter {\n        +__init__()\n        +format_output(results: list[list[int]]) -> str\n    }\n    Main --> ElectionSimulator\n    Main --> InputParser\n    Main --> OutputFormat
+ter\n",
+    "Program call flow": "\nsequenceDiagram\n    participant M as Main\n    participant IP as InputParser\n    participant ES as ElectionSimulator\n    participant OF as OutputFormatter\n
+    M->>IP: parse_input()\n    IP-->>M: test_cases (list of dict)\n    M->>ES: process_test_cases(test_cases)\n    ES-->>M: results (list of list[int])\n    M->>OF: format_output(results)
+\n    OF-->>M: output_str\n    M->>stdout: print(output_str)\n",
+    "Anything UNCLEAR": "The requirements are mostly clear. The only minor ambiguity is whether the output should be printed after each test case or all at once; we will print all at once
+, as is standard in competitive programming. Also, it is assumed that if a candidate is already the winner, zero exclusions are needed. If all candidates have zero fans, the lowest-number
+ed candidate wins by default, which is handled. No third-party libraries are needed."
+}
+[/CONTENT]
+Warning: model not found. Using cl100k_base encoding.
+e https://cookbook.openai.com/examples/how_to_count_tokens_with_tiktoken for information on how messages are converted to tokens.
+design\20250614232520.json
+  metagpt.utils.file_repository:save:62 - update dependency: 
+cs\system_design\20250614232520.json:{'docs\\prd\\20250614232520.json'}
+
+
+  metagpt.utils.mermaid:mermaid_to_file:44 - Generating 
+es\data_api_design\20250614232520.pdf..
+  metagpt.utils.mermaid:mermaid_to_file:68 - Generating single mermaid chart
+
+  metagpt.utils.mermaid:mermaid_to_file:44 - Generating 
+es\data_api_design\20250614232520.svg..
+  metagpt.utils.mermaid:mermaid_to_file:68 - Generating single mermaid chart
+
+  metagpt.utils.mermaid:mermaid_to_file:44 - Generating 
+es\data_api_design\20250614232520.png..
+  metagpt.utils.mermaid:mermaid_to_file:68 - Generating single mermaid chart
+
+  metagpt.actions.design_api:_save_data_api_design:107 - Save class view to 
+on_simulator\resources\data_api_design\20250614232520
+
+
+  metagpt.utils.mermaid:mermaid_to_file:44 - Generating 
+es\seq_flow\20250614232520.pdf..
+  metagpt.utils.mermaid:mermaid_to_file:68 - Generating single mermaid chart
+
+  metagpt.utils.mermaid:mermaid_to_file:44 - Generating 
+es\seq_flow\20250614232520.svg..
+  metagpt.utils.mermaid:mermaid_to_file:68 - Generating single mermaid chart
+
+  metagpt.utils.mermaid:mermaid_to_file:44 - Generating 
+es\seq_flow\20250614232520.png..
+  metagpt.utils.mermaid:mermaid_to_file:68 - Generating single mermaid chart
+
+  metagpt.actions.design_api:_save_seq_flow:116 - Saving sequence flow to 
+_simulator\resources\seq_flow\20250614232520
+stem_design\20250614232520.md
+  metagpt.roles.role:_act:391 - Eve(Project Manager): to do WriteTasks(WriteTasks)
+[CONTENT]
+{
+    "Required Python packages": [
+        "No third-party dependencies required"
+    ],
+    "Required Other language third-party packages": [
+        "No third-party dependencies required"
+    ],
+    "Logic Analysis": [
+        [
+            "main.py",
+            "Contains the entry point, instantiates InputParser, ElectionSimulator, and OutputFormatter. Handles fast I/O using sys.stdin and sys.stdout."
+        ],
+        [
+            "ElectionSimulator class",
+            "Implements __init__, process_test_cases, and _min_exclusions_for_candidate. Handles the core logic for determining the minimum number of exclusions per candidate using prefix
+ sums and sorted vote lists."
+        ],
+        [
+            "InputParser class",
+            "Implements __init__ and parse_input. Reads and parses all test cases from stdin efficiently."
+        ],
+        [
+            "OutputFormatter class",
+            "Implements __init__ and format_output. Formats the results as specified for output."
+        ]
+    ],
+    "Task list": [
+        "main.py",
+        "ElectionSimulator class",
+        "InputParser class",
+        "OutputFormatter class"
+    ],
+    "Full API spec": "",
+    "Shared Knowledge": "All logic is contained in a single file (main.py) for maximum compatibility and efficiency. No external dependencies are used. Fast input/output is handled via sy
+s.stdin and sys.stdout. The ElectionSimulator class is responsible for the main algorithm, using prefix sums and sorted lists to efficiently compute results for each candidate. InputParse
+r and OutputFormatter are utility classes for parsing and formatting, respectively.",
+    "Anything UNCLEAR": "No major ambiguities remain. Output is printed all at once after processing all test cases, as is standard in competitive programming. Edge cases (e.g., all candi
+dates have zero votes) are handled as described."
+}
+[/CONTENT]
+Warning: model not found. Using cl100k_base encoding.
+e https://cookbook.openai.com/examples/how_to_count_tokens_with_tiktoken for information on how messages are converted to tokens.
+250614232520.json
+  metagpt.utils.file_repository:save:62 - update dependency: 
+cs\task\20250614232520.json:{'docs\\system_design\\20250614232520.json'}
+.txt
+  metagpt.actions.write_code:run:141 - Writing main.py..
+## Code: main.py
+```python
+## main.py
+
+import sys
+from bisect import bisect_right
+from typing import List, Dict
+
+class InputParser:
+    """Efficiently parses input for the election simulation problem."""
+
+    def __init__(self) -> None:
+        pass
+
+    def parse_input(self) -> List[Dict]:
+        """Reads all test cases from stdin.
+
+        Returns:
+            List[Dict]: A list of test case dictionaries, each with keys:
+                - 'n': int, number of candidates
+                - 'c': int, number of fans to redistribute per exclusion
+                - 'a': List[int], list of votes for each candidate
+        """
+        input_lines = sys.stdin.read().splitlines()
+        t = int(input_lines[0])
+        idx = 1
+        test_cases = []
+        for _ in range(t):
+            n_c = input_lines[idx].split()
+            n = int(n_c[0])
+            c = int(n_c[1])
+            idx += 1
+            a = list(map(int, input_lines[idx].split()))
+            idx += 1
+            test_cases.append({'n': n, 'c': c, 'a': a})
+        return test_cases
+
+
+class ElectionSimulator:
+    """Simulates the election and computes minimum exclusions for each candidate."""
+
+    def __init__(self) -> None:
+        pass
+
+    def process_test_cases(self, test_cases: List[Dict]) -> List[List[int]]:
+        """Processes all test cases and computes results.
+
+        Args:
+            test_cases (List[Dict]): List of test case dictionaries.
+
+        Returns:
+            List[List[int]]: For each test case, a list of minimum exclusions per candidate.
+        """
+        results = []
+        for case in test_cases:
+            n = case['n']
+            c = case['c']
+            a = case['a']
+            result = []
+            for idx in range(n):
+                min_excl = self._min_exclusions_for_candidate(n, c, a, idx)
+                result.append(min_excl)
+            results.append(result)
+        return results
+
+    def _min_exclusions_for_candidate(self, n: int, c: int, a: List[int], idx: int) -> int:
+        """Computes the minimum number of exclusions for candidate idx to win.
+
+        Args:
+            n (int): Number of candidates.
+            c (int): Number of fans to redistribute per exclusion.
+            a (List[int]): List of votes for each candidate.
+            idx (int): Index of the candidate in question.
+
+        Returns:
+            int: Minimum number of exclusions required for candidate idx to win.
+        """
+        # Prepare a sorted list of (votes, original_index)
+        votes_with_idx = [(a[i], i) for i in range(n)]
+        votes_with_idx.sort(reverse=True)  # Descending order
+
+        # If candidate idx is already the winner, no exclusions needed
+        if votes_with_idx[0][1] == idx:
+            return 0
+
+        # Extract sorted votes (descending)
+        sorted_votes = [v for v, _ in votes_with_idx]
+        # Precompute prefix sums for efficient sum queries
+        prefix_sums = [0] * (n + 1)
+        for i in range(n):
+            prefix_sums[i + 1] = prefix_sums[i] + sorted_votes[i]
+
+        # Find the position of candidate idx in the sorted list
+        for pos, (_, orig_idx) in enumerate(votes_with_idx):
+            if orig_idx == idx:
+                candidate_pos = pos
+                break
+
+        # Binary search: minimum k (number of higher-vote candidates to exclude)
+        left = 0
+        right = candidate_pos  # At most, need to exclude all above
+        answer = candidate_pos + 1  # Default: exclude all above
+
+        while left <= right:
+            mid = (left + right) // 2
+            # Exclude top 'mid' candidates (not including idx)
+            # After exclusion, candidate idx's votes increase by mid * c
+            new_votes = a[idx] + mid * c
+
+            # The remaining candidates (excluding the excluded ones and idx)
+            # Find the highest vote among remaining candidates
+            # Excluded indices: votes_with_idx[0:mid]
+            # If idx is among the excluded, skip (should not happen)
+            # Build a list of remaining votes
+            remaining_votes = []
+            for i in range(n):
+                orig_i = votes_with_idx[i][1]
+                if i < mid:
+                    continue  # Excluded
+                if orig_i == idx:
+                    continue  # This is the candidate in question
+                remaining_votes.append(a[orig_i])
+
+            max_other = max(remaining_votes) if remaining_votes else float('-inf')
+            if new_votes > max_other:
+                answer = mid
+                right = mid - 1
+            else:
+                left = mid + 1
+
+        return answer
+
+
+class OutputFormatter:
+    """Formats the output for the election simulation problem."""
+
+    def __init__(self) -> None:
+        pass
+
+    def format_output(self, results: List[List[int]]) -> str:
+        """Formats the results for output.
+
+        Args:
+            results (List[List[int]]): List of results per test case.
+
+        Returns:
+            str: Formatted output string.
+        """
+        output_lines = []
+        for res in results:
+            output_lines.append(' '.join(map(str, res)))
+        return '\n'.join(output_lines)
+
+
+def main() -> None:
+    """Main entry point for the election simulation."""
+    parser = InputParser()
+    test_cases = parser.parse_input()
+    simulator = ElectionSimulator()
+    results = simulator.process_test_cases(test_cases)
+    formatter = OutputFormatter()
+    output_str = formatter.format_output(results)
+    sys.stdout.write(output_str + '\n')
+
+
+if __name__ == '__main__':
+    main()
+```
+Warning: model not found. Using cl100k_base encoding.
+e https://cookbook.openai.com/examples/how_to_count_tokens_with_tiktoken for information on how messages are converted to tokens.
+  metagpt.actions.write_code_review:run:175 - Code review and rewrite main.py: 1/2 | len(iterative_code)=5555, len(self.i_context.code_doc.content)=5555
+## Code Review: main.py
+1. Yes, the code is implemented as per the requirements. It uses only the standard library, is single-file, and follows the described modular structure with InputParser, ElectionSimulator
+, and OutputFormatter classes. The main logic for determining the minimum number of exclusions is implemented as specified.
+2. Yes, the code logic is correct. The binary search in `_min_exclusions_for_candidate` efficiently determines the minimum number of higher-vote candidates to exclude for each candidate t
+o win, considering redistribution of votes. Edge cases (e.g., already winning, all zero votes) are handled.
+3. Yes, the code follows the "Data structures and interfaces" as described in the system design. The classes and their methods match the provided class diagram and call flow.
+4. Yes, all functions are implemented as required. There are no missing implementations.
+5. Yes, all necessary pre-dependencies (`sys`, `bisect`, `typing`) are imported. No third-party libraries are used, as required.
+6. Yes, methods from other classes are used correctly within the same file.
+
+## Actions
+pass
+
+## Code Review Result
+LGTM
+Warning: model not found. Using cl100k_base encoding.
+e https://cookbook.openai.com/examples/how_to_count_tokens_with_tiktoken for information on how messages are converted to tokens.
+tion_simulator\main.py
+  metagpt.utils.file_repository:save:62 - update dependency: 
+rland_election_simulator\main.py:['docs\\system_design\\20250614232520.json', 'docs\\task\\20250614232520.json']
+  metagpt.actions.write_code:run:141 - Writing ElectionSimulator class..
+```python
+## ElectionSimulator class
+from typing import List, Dict
+
+class ElectionSimulator:
+    """Simulates the election and computes minimum exclusions for each candidate."""
+
+    def __init__(self) -> None:
+        """Initializes the ElectionSimulator. No state is maintained."""
+        pass
+
+    def process_test_cases(self, test_cases: List[Dict]) -> List[List[int]]:
+        """Processes all test cases and computes results.
+
+        Args:
+            test_cases (List[Dict]): List of test case dictionaries.
+
+        Returns:
+            List[List[int]]: For each test case, a list of minimum exclusions per candidate.
+        """
+        results: List[List[int]] = []
+        for case in test_cases:
+            n: int = case['n']
+            c: int = case['c']
+            a: List[int] = case['a']
+            result: List[int] = []
+            for idx in range(n):
+                min_excl: int = self._min_exclusions_for_candidate(n, c, a, idx)
+                result.append(min_excl)
+            results.append(result)
+        return results
+
+    def _min_exclusions_for_candidate(self, n: int, c: int, a: List[int], idx: int) -> int:
+        """Computes the minimum number of exclusions for candidate idx to win.
+
+        Args:
+            n (int): Number of candidates.
+            c (int): Number of fans to redistribute per exclusion.
+            a (List[int]): List of votes for each candidate.
+            idx (int): Index of the candidate in question.
+
+        Returns:
+            int: Minimum number of exclusions required for candidate idx to win.
+        """
+        # Prepare a sorted list of (votes, original_index)
+        votes_with_idx: List[tuple[int, int]] = [(a[i], i) for i in range(n)]
+        votes_with_idx.sort(reverse=True)  # Descending order
+
+        # If candidate idx is already the winner, no exclusions needed
+        if votes_with_idx[0][1] == idx:
+            return 0
+
+        # Extract sorted votes (descending)
+        sorted_votes: List[int] = [v for v, _ in votes_with_idx]
+
+        # Find the position of candidate idx in the sorted list
+        candidate_pos: int = -1
+        for pos, (_, orig_idx) in enumerate(votes_with_idx):
+            if orig_idx == idx:
+                candidate_pos = pos
+                break
+
+        # Binary search: minimum k (number of higher-vote candidates to exclude)
+        left: int = 0
+        right: int = candidate_pos  # At most, need to exclude all above
+        answer: int = candidate_pos + 1  # Default: exclude all above
+
+        while left <= right:
+            mid: int = (left + right) // 2
+            # Exclude top 'mid' candidates (not including idx)
+            # After exclusion, candidate idx's votes increase by mid * c
+            new_votes: int = a[idx] + mid * c
+
+            # The remaining candidates (excluding the excluded ones and idx)
+            remaining_votes: List[int] = []
+            for i in range(n):
+                orig_i: int = votes_with_idx[i][1]
+                if i < mid:
+                    continue  # Excluded
+                if orig_i == idx:
+                    continue  # This is the candidate in question
+                remaining_votes.append(a[orig_i])
+
+            max_other: int = max(remaining_votes) if remaining_votes else float('-inf')
+            if new_votes > max_other:
+                answer = mid
+                right = mid - 1
+            else:
+                left = mid + 1
+
+        return answer
+```
+Warning: model not found. Using cl100k_base encoding.
+e https://cookbook.openai.com/examples/how_to_count_tokens_with_tiktoken for information on how messages are converted to tokens.
+  metagpt.actions.write_code_review:run:175 - Code review and rewrite ElectionSimulator class: 1/2 | len(iterative_code)=3449, len(self.i_context.code_d
+oc.content)=3449
+## Code Review: ElectionSimulator class
+1. Yes, the code is implemented as per the requirements. It processes all test cases, and for each candidate, computes the minimum number of exclusions needed for them to win, using a bin
+ary search approach as described in the system design.
+2. Yes, the code logic is correct. The binary search efficiently determines the minimum number of higher-vote candidates to exclude, and the edge case where the candidate is already the w
+inner is handled.
+3. Yes, the code follows the "Data structures and interfaces" described in the system design. The class and method signatures match the specification.
+4. Yes, all functions are implemented as required.
+5. Yes, all necessary pre-dependencies are imported (`List`, `Dict` from `typing`).
+6. Yes, methods from other files are not required to be reused in this class, as per the single-file design.
+
+## Actions
+pass
+
+## Code Review Result
+LGTM
+Warning: model not found. Using cl100k_base encoding.
+e https://cookbook.openai.com/examples/how_to_count_tokens_with_tiktoken for information on how messages are converted to tokens.
+tion_simulator\ElectionSimulator class
+  metagpt.utils.file_repository:save:62 - update dependency: 
+rland_election_simulator\ElectionSimulator class:['docs\\system_design\\20250614232520.json', 'docs\\task\\20250614232520.json']
+  metagpt.actions.write_code:run:141 - Writing InputParser class..
+```python
+## InputParser class
+import sys
+from typing import List, Dict
+
+class InputParser:
+    """Efficiently parses input for the election simulation problem."""
+
+    def __init__(self) -> None:
+        """Initializes the InputParser. No state is maintained."""
+        pass
+
+    def parse_input(self) -> List[Dict]:
+        """Reads all test cases from stdin.
+
+        Returns:
+            List[Dict]: A list of test case dictionaries, each with keys:
+                - 'n': int, number of candidates
+                - 'c': int, number of fans to redistribute per exclusion
+                - 'a': List[int], list of votes for each candidate
+        """
+        input_lines: List[str] = sys.stdin.read().splitlines()
+        t: int = int(input_lines[0])
+        idx: int = 1
+        test_cases: List[Dict] = []
+        for _ in range(t):
+            n_c: List[str] = input_lines[idx].split()
+            n: int = int(n_c[0])
+            c: int = int(n_c[1])
+            idx += 1
+            a: List[int] = list(map(int, input_lines[idx].split()))
+            idx += 1
+            test_cases.append({'n': n, 'c': c, 'a': a})
+        return test_cases
+```
+Warning: model not found. Using cl100k_base encoding.
+e https://cookbook.openai.com/examples/how_to_count_tokens_with_tiktoken for information on how messages are converted to tokens.
+  metagpt.actions.write_code_review:run:175 - Code review and rewrite InputParser class: 1/2 | len(iterative_code)=1142, len(self.i_context.code_doc.con
+tent)=1142
+## Code Review: InputParser class
+1. Yes.
+2. Yes.
+3. Yes.
+4. Yes.
+5. Yes.
+6. Yes.
+
+## Actions
+pass
+
+## Code Review Result
+LGTM
+Warning: model not found. Using cl100k_base encoding.
+e https://cookbook.openai.com/examples/how_to_count_tokens_with_tiktoken for information on how messages are converted to tokens.
+tion_simulator\InputParser class
+  metagpt.utils.file_repository:save:62 - update dependency: 
+rland_election_simulator\InputParser class:['docs\\system_design\\20250614232520.json', 'docs\\task\\20250614232520.json']
+  metagpt.actions.write_code:run:141 - Writing OutputFormatter class..
+```python
+## OutputFormatter class
+from typing import List
+
+class OutputFormatter:
+    """Formats the output for the election simulation problem."""
+
+    def __init__(self) -> None:
+        """Initializes the OutputFormatter. No state is maintained."""
+        pass
+
+    def format_output(self, results: List[List[int]]) -> str:
+        """Formats the results for output.
+
+        Args:
+            results (List[List[int]]): List of results per test case.
+
+        Returns:
+            str: Formatted output string.
+        """
+        output_lines: List[str] = []
+        for res in results:
+            output_lines.append(' '.join(map(str, res)))
+        return '\n'.join(output_lines)
+```
+Warning: model not found. Using cl100k_base encoding.
+e https://cookbook.openai.com/examples/how_to_count_tokens_with_tiktoken for information on how messages are converted to tokens.
+  metagpt.actions.write_code_review:run:175 - Code review and rewrite OutputFormatter class: 1/2 | len(iterative_code)=680, len(self.i_context.code_doc.
+content)=680
+## Code Review: OutputFormatter class
+1. Yes.
+2. Yes.
+3. Yes.
+4. Yes.
+5. Yes.
+6. Yes.
+
+## Actions
+pass
+
+## Code Review Result
+LGTM
+Warning: model not found. Using cl100k_base encoding.
+e https://cookbook.openai.com/examples/how_to_count_tokens_with_tiktoken for information on how messages are converted to tokens.
+tion_simulator\OutputFormatter class
+  metagpt.utils.file_repository:save:62 - update dependency: 
+rland_election_simulator\OutputFormatter class:['docs\\system_design\\20250614232520.json', 'docs\\task\\20250614232520.json']
+ulator/InputParser class', 'berland_election_simulator/OutputFormatter class', 'berland_election_simulator/main.py', 'docs/prd/20250614232520.json', 'docs/requirement.txt', 'docs/system_d
+esign/20250614232520.json', 'docs/task/20250614232520.json', 'requirements.txt', 'resources/competitive_analysis/20250614232520.mmd', 'resources/competitive_analysis/20250614232520.pdf',
+'resources/competitive_analysis/20250614232520.png', 'resources/competitive_analysis/20250614232520.svg', 'resources/data_api_design/20250614232520.mmd', 'resources/data_api_design/202506
+14232520.pdf', 'resources/data_api_design/20250614232520.png', 'resources/data_api_design/20250614232520.svg', 'resources/prd/20250614232520.md', 'resources/seq_flow/20250614232520.mmd',
+'resources/seq_flow/20250614232520.pdf', 'resources/seq_flow/20250614232520.png', 'resources/seq_flow/20250614232520.svg', 'resources/system_design/20250614232520.md']

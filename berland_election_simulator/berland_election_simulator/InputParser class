@@ -1,0 +1,33 @@
+## InputParser class
+import sys
+from typing import List, Dict
+
+class InputParser:
+    """Efficiently parses input for the election simulation problem."""
+
+    def __init__(self) -> None:
+        """Initializes the InputParser. No state is maintained."""
+        pass
+
+    def parse_input(self) -> List[Dict]:
+        """Reads all test cases from stdin.
+
+        Returns:
+            List[Dict]: A list of test case dictionaries, each with keys:
+                - 'n': int, number of candidates
+                - 'c': int, number of fans to redistribute per exclusion
+                - 'a': List[int], list of votes for each candidate
+        """
+        input_lines: List[str] = sys.stdin.read().splitlines()
+        t: int = int(input_lines[0])
+        idx: int = 1
+        test_cases: List[Dict] = []
+        for _ in range(t):
+            n_c: List[str] = input_lines[idx].split()
+            n: int = int(n_c[0])
+            c: int = int(n_c[1])
+            idx += 1
+            a: List[int] = list(map(int, input_lines[idx].split()))
+            idx += 1
+            test_cases.append({'n': n, 'c': c, 'a': a})
+        return test_cases

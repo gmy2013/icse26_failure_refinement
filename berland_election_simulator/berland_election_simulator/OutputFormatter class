@@ -1,0 +1,23 @@
+## OutputFormatter class
+from typing import List
+
+class OutputFormatter:
+    """Formats the output for the election simulation problem."""
+
+    def __init__(self) -> None:
+        """Initializes the OutputFormatter. No state is maintained."""
+        pass
+
+    def format_output(self, results: List[List[int]]) -> str:
+        """Formats the results for output.
+
+        Args:
+            results (List[List[int]]): List of results per test case.
+
+        Returns:
+            str: Formatted output string.
+        """
+        output_lines: List[str] = []
+        for res in results:
+            output_lines.append(' '.join(map(str, res)))
+        return '\n'.join(output_lines)

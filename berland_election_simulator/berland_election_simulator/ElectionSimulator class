@@ -1,0 +1,90 @@
+## ElectionSimulator class
+from typing import List, Dict
+
+class ElectionSimulator:
+    """Simulates the election and computes minimum exclusions for each candidate."""
+
+    def __init__(self) -> None:
+        """Initializes the ElectionSimulator. No state is maintained."""
+        pass
+
+    def process_test_cases(self, test_cases: List[Dict]) -> List[List[int]]:
+        """Processes all test cases and computes results.
+
+        Args:
+            test_cases (List[Dict]): List of test case dictionaries.
+
+        Returns:
+            List[List[int]]: For each test case, a list of minimum exclusions per candidate.
+        """
+        results: List[List[int]] = []
+        for case in test_cases:
+            n: int = case['n']
+            c: int = case['c']
+            a: List[int] = case['a']
+            result: List[int] = []
+            for idx in range(n):
+                min_excl: int = self._min_exclusions_for_candidate(n, c, a, idx)
+                result.append(min_excl)
+            results.append(result)
+        return results
+
+    def _min_exclusions_for_candidate(self, n: int, c: int, a: List[int], idx: int) -> int:
+        """Computes the minimum number of exclusions for candidate idx to win.
+
+        Args:
+            n (int): Number of candidates.
+            c (int): Number of fans to redistribute per exclusion.
+            a (List[int]): List of votes for each candidate.
+            idx (int): Index of the candidate in question.
+
+        Returns:
+            int: Minimum number of exclusions required for candidate idx to win.
+        """
+        # Prepare a sorted list of (votes, original_index)
+        votes_with_idx: List[tuple[int, int]] = [(a[i], i) for i in range(n)]
+        votes_with_idx.sort(reverse=True)  # Descending order
+
+        # If candidate idx is already the winner, no exclusions needed
+        if votes_with_idx[0][1] == idx:
+            return 0
+
+        # Extract sorted votes (descending)
+        sorted_votes: List[int] = [v for v, _ in votes_with_idx]
+
+        # Find the position of candidate idx in the sorted list
+        candidate_pos: int = -1
+        for pos, (_, orig_idx) in enumerate(votes_with_idx):
+            if orig_idx == idx:
+                candidate_pos = pos
+                break
+
+        # Binary search: minimum k (number of higher-vote candidates to exclude)
+        left: int = 0
+        right: int = candidate_pos  # At most, need to exclude all above
+        answer: int = candidate_pos + 1  # Default: exclude all above
+
+        while left <= right:
+            mid: int = (left + right) // 2
+            # Exclude top 'mid' candidates (not including idx)
+            # After exclusion, candidate idx's votes increase by mid * c
+            new_votes: int = a[idx] + mid * c
+
+            # The remaining candidates (excluding the excluded ones and idx)
+            remaining_votes: List[int] = []
+            for i in range(n):
+                orig_i: int = votes_with_idx[i][1]
+                if i < mid:
+                    continue  # Excluded
+                if orig_i == idx:
+                    continue  # This is the candidate in question
+                remaining_votes.append(a[orig_i])
+
+            max_other: int = max(remaining_votes) if remaining_votes else float('-inf')
+            if new_votes > max_other:
+                answer = mid
+                right = mid - 1
+            else:
+                left = mid + 1
+
+        return answer
